@@ -1,0 +1,78 @@
+﻿@model Employee
+
+<form asp-action="UpdateEmployee" method="post">
+    <div>
+        <label>Employee ID</label>
+        <input asp-for="EmployeeID" readonly class="form-control" />
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label>First Name</label>
+            <input asp-for="FirstName" class="form-control" />
+        </div>
+
+        <div class="col">
+            <label>Middle Name</label>
+            <input asp-for="MiddleName" class="form-control" />
+        </div>
+
+        <div class="col">
+            <label>Last Name</label>
+            <input asp-for="LastName" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label>Date Of Birth</label>
+            <input asp-for="DateOfBirth" class="form-control" />
+        </div>
+        <div class="col">
+            <label>Email</label>
+            <input asp-for="Email" class="form-control" />
+        </div>
+        <div class="col">
+            <label>Phone Number</label>
+            <input  asp-for="PhoneNumber" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label>State</label>
+            <input asp-for="State" class="form-control" />
+        </div>
+        <div class="col">
+            <label>District</label>
+            <input asp-for="District" class="form-control" />
+        </div>
+        <div class="col">
+            <label>Address</label>
+            <input asp-for="Address" class="form-control" />
+        </div>
+        <div class="col">
+            <label>ZipCode</label>
+            <input asp-for="ZipCode" class="form-control" />
+        </div>
+    </div>
+    <div>
+        <label>JobTitle</label>
+        <input asp-for="JobTitle" class="form-control" />
+    </div>
+    <div>
+        <label>Department</label>
+        <input asp-for="Department" class="form-control" />
+    </div>
+    <div>
+        <label>Salary</label>
+        <input asp-for="Salary" class="form-control" />
+    </div>
+    <div>
+        <label>Status</label>
+        <input asp-for="Status" class="form-control" />
+    </div>
+    <div>
+        <button type="submit" class="btn btn-success">Update</button>
+        <a asp-action="Index" class="btn btn-secondary">Back To Review</a>
+    </div>
+</form>

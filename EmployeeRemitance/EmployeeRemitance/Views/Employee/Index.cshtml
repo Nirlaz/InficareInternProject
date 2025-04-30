@@ -1,0 +1,47 @@
+﻿@model List<Employee>
+<a type="button" asp-controller="Employee" asp-action="Create" class="btn btn-primary">Add</a>
+
+
+<table class="table">
+    <tr>
+        <th>Employee ID</th>
+        <th>First Name</th>
+        <th>Middle Name</th>
+        <th>LastName</th>
+        <th>DOB</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>State</th>
+        <th>District</th>
+        <th>Address</th>
+        <th>Zip Code</th>
+        <th>Job Title</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var emp in Model)
+    {
+        <tr>
+            <td>@emp.EmployeeID</td>
+            <td>@emp.FirstName</td>
+            <td>@emp.MiddleName</td>
+            <td>@emp.LastName</td>
+            <td>@emp.DateOfBirth</td>
+            <td>@emp.Email</td>
+            <td>@emp.PhoneNumber</td>
+            <td>@emp.State</td>
+            <td>@emp.District</td>
+            <td>@emp.Address</td>
+            <td>@emp.ZipCode</td>
+            <td>@emp.JobTitle</td>
+            <td>@emp.Department</td>
+            <td>@emp.Salary</td>
+            <td>@emp.Status</td>
+            <td>  <a asp-action="Update" asp-route-Id="@emp.EmployeeID" class="btn btn-success">Update</a> <a asp-action="DeleteEmployee" asp-route-EmployeeId="@emp.EmployeeID" class="btn btn-danger">Delete</a> <a asp-controller="Qualification" asp-action="Show" asp-route-EmployeeId="@emp.EmployeeID" class="btn btn-secondary">Qualification</a> </td>
+        </tr>
+
+    }
+</table>
+</div>

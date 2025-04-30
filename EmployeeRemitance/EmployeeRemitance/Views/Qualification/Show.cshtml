@@ -1,0 +1,25 @@
+﻿@model List<Qualification>
+<a type="button" asp-controller="Employee" asp-action="Index" class="btn btn-secondary">Back</a>
+
+
+<table class="table">
+    <tr>
+        <th>Qualification ID</th>
+        <th>Qualification Type</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var quali in Model)
+    {
+        <tr>
+            <td>@quali.QualificationId</td>
+            <td>@quali.QualificationName</td>
+
+
+            <td>
+                <a asp-controller="Qualification" asp-action="DeleteFormEmployeeId" asp-route-QualificationId="@quali.QualificationId" asp-route-EmployeeId="@ViewBag.EmployeeId" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+
+    }
+</table>
+</div>

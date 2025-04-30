@@ -1,8 +1,15 @@
+using EmployeeRemitance. Database;
+using EmployeeRemitance. Interfaces;
+using EmployeeRemitance. Interfaces. DatabaseInterfaces;
+using EmployeeRemitance. Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder. Services. AddScoped<ISQLDbconnect , SQLDbconnect> ( );
+builder. Services. AddScoped<IEmployeeRepository , EmployeeRepository> ( );
+builder. Services. AddScoped<IQualificationRepository , QualificationRepository> ( );
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,6 +29,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Employee}/{action=Index}/{id?}");
 
 app.Run();
