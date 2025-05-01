@@ -164,6 +164,37 @@ namespace EmployeeRemitance. Repository
             return _connection. ExecuteSQLDataListWithParam<Employee> ( "SP_NEWEMPLOYEE" , parameter );
         }
 
+        public List<Employee> GetByFilter ( DateOnly? DateOfBirth , DateTime? AccountFrom , DateTime? AccountTo )
+        {
+            SqlParameter[] parameter = new SqlParameter[4];
+
+            parameter[0] = new SqlParameter ( );
+            parameter[0]. ParameterName = "@Flag";
+            parameter[0]. Value = "EF";
+            parameter[0]. SqlDbType = SqlDbType. Char;
+            parameter[0]. Size = 2;
+
+            parameter[1] = new SqlParameter ( );
+            parameter[1]. ParameterName = "@CreatedFrom";
+            parameter[1]. Value = ( object? ) AccountFrom ?? DBNull. Value;
+            parameter[1]. SqlDbType = SqlDbType. DateTime;
+           
+
+            parameter[2] = new SqlParameter ( );
+            parameter[2]. ParameterName = "@CreatedTo";
+            parameter[2]. Value = ( object? ) AccountTo ?? DBNull. Value;
+            parameter[2]. SqlDbType = SqlDbType. DateTime;
+            
+
+            parameter[3] = new SqlParameter ( );
+            parameter[3]. ParameterName = "@DateOfBirth";
+            parameter[3]. Value = ( object? ) DateOfBirth?.ToDateTime ( TimeOnly. MinValue ) ?? DBNull. Value;
+            parameter[3]. SqlDbType = SqlDbType. Date;
+          
+            var Employee =  _connection. ExecuteSQLDataListWithParam<Employee> ( "SP_NEWEMPLOYEE" , parameter );
+            return Employee;
+        }
+
         public Employee GetEmployeeById ( int id )
         {
             SqlParameter[] parameter = new SqlParameter[2];

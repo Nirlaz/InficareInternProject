@@ -1,0 +1,79 @@
+﻿@model FilterModel
+
+<div class="row">
+    <form asp-action="FilterSearch" method="post">
+        <label class="col">DateOfBirth: <input type="date" asp-for="DateOfBirth" value="@Model.DateOfBirth?.ToString("yyyy-MM-dd")" class="form-control" onchange="this.form.submit()" /></label>
+        <label class="col">Age:<input asp-for="Age" onchange="this.form.submit()" value="@Model.Age" /></label>
+        <label class="col">Account Created From: <input asp-for="AccountFrom" class="form-control" onchange="this.form.submit()" /></label>
+        <label class="col">Account Created To: <input asp-for="AccountTo" class="form-control" onchange="this.form.submit()" /></label>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>EmployeeID</th>
+            <th>FirstName</th>
+            <th>MiddleName</th>
+            <th>LastName</th>
+            <th>DateOfBirth</th>
+            <th>Email</th>
+            <th>PhoneNumber</th>
+            <th>State</th>
+            <th>District</th>
+            <th>Address</th>
+            <th>ZipCode</th>
+            <th>JobTitle</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model.Employees ?? new List<Employee>())
+        {
+            <tr>
+                <td>@emp.EmployeeID</td>
+                <td>@emp.FirstName</td>
+                <td>@emp.MiddleName</td>
+                <td>@emp.LastName</td>
+                <td>@emp.DateOfBirth.ToShortDateString()</td>
+                <td>@emp.Email</td>
+                <td>@emp.PhoneNumber</td>
+                <td>@emp.State</td>
+                <td>@emp.District</td>
+                <td>@emp.Address</td>
+                <td>@emp.ZipCode</td>
+                <td>@emp.JobTitle</td>
+                <td>@emp.Department</td>
+                <td>@emp.Salary</td>
+                <td>@emp.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<form asp-action="ExportExcel" method="post">
+    @for (int i = 0; i < Model.Employees?.Count; i++)
+    {
+        <input type="hidden" name="Employees[@i].EmployeeID" value="@Model.Employees[i].EmployeeID" />
+        <input type="hidden" name="Employees[@i].FirstName" value="@Model.Employees[i].FirstName" />
+        <input type="hidden" name="Employees[@i].MiddleName" value="@Model.Employees[i].MiddleName" />
+        <input type="hidden" name="Employees[@i].LastName" value="@Model.Employees[i].LastName" />
+        <input type="hidden" name="Employees[@i].DateOfBirth" value="@Model.Employees[i].DateOfBirth.ToString("yyyy-MM-dd")" />
+        <input type="hidden" name="Employees[@i].Email" value="@Model.Employees[i].Email" />
+        <input type="hidden" name="Employees[@i].PhoneNumber" value="@Model.Employees[i].PhoneNumber" />
+        <input type="hidden" name="Employees[@i].State" value="@Model.Employees[i].State" />
+        <input type="hidden" name="Employees[@i].District" value="@Model.Employees[i].District" />
+        <input type="hidden" name="Employees[@i].Address" value="@Model.Employees[i].Address" />
+        <input type="hidden" name="Employees[@i].ZipCode" value="@Model.Employees[i].ZipCode" />
+        <input type="hidden" name="Employees[@i].JobTitle" value="@Model.Employees[i].JobTitle" />
+        <input type="hidden" name="Employees[@i].Department" value="@Model.Employees[i].Department" />
+        <input type="hidden" name="Employees[@i].Salary" value="@Model.Employees[i].Salary" />
+        <input type="hidden" name="Employees[@i].Status" value="@Model.Employees[i].Status" />
+        <input type="hidden" name="Employees[@i].CreatedAt" value="@Model.Employees[i].CreatedAt.ToString("o")" />
+        <input type="hidden" name="Employees[@i].UpdatedAt" value="@Model.Employees[i].UpdatedAt.ToString("o")" />
+    }
+    <button type="submit" class="btn btn-success">Export To Excel</button>
+</form>
