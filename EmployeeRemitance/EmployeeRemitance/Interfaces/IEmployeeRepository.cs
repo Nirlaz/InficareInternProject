@@ -6,7 +6,7 @@ namespace EmployeeRemitance. Interfaces
     {
         List<Employee> GetAllEmployee ( );
 
-        List<Employee>? GetByFilter ( DateOnly? DateOfBirth , DateTime? AccountFrom , DateTime? AccountTo );
+        List<Employee>? GetByFilter ( FilterModel filtermodel );
         Reponse Create(UpdateModel model);
 
         Employee GetEmployeeById ( int id);

@@ -1,0 +1,14 @@
+﻿@model Qualification
+
+<form asp-action="CreateQualification" method="post">
+
+    <div>
+        <label>Qualification Type</label>
+        <input asp-for="QualificationName" class="form-control" />
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-action="Index" class="btn btn-secondary">Back To Review</a>
+    </div>
+</form>

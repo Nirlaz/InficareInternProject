@@ -1,0 +1,18 @@
+﻿@model Qualification
+
+<form asp-action="UpdateQualification" method="post">
+    <div>
+        <label>Qualification Id</label>
+        <input asp-for="QualificationId" readonly class="form-control" />
+    </div>
+    <div>
+        <label>Qualification Type</label>
+        <input asp-for="QualificationName" class="form-control" />
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-success">Update</button>
+        <a asp-action="Index" class="btn btn-secondary">Back To Review</a>
+    </div>
+
+</form>

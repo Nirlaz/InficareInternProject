@@ -17,7 +17,21 @@ namespace EmployeeRemitance. Repository
         }
         public Reponse AddQualification ( Qualification qualification )
         {
-            throw new NotImplementedException ( );
+            SqlParameter[] parameter =new SqlParameter[2];
+            parameter[0] = new SqlParameter ( );
+            parameter[0]. ParameterName = "@Flag";
+            parameter[0]. Value = "QI";
+            parameter[0]. SqlDbType = SqlDbType. Char;
+            parameter[0]. Size = 2;
+
+            parameter[1] = new SqlParameter ( );
+            parameter[1]. ParameterName = "@QualificationName";
+            parameter[1]. Value = qualification. QualificationName;
+            parameter[1]. SqlDbType = SqlDbType. VarChar;
+            parameter[1]. Size = 255;
+
+            var quali = _dbconnect. ExecuteSQLDataSingleWithParam<Reponse> ( "SP_QUALIFICATION" , parameter );
+            return quali;
         }
 
         public Reponse DeleteFormEmployeeId ( int QualificationId , int EmployeeId )
@@ -46,12 +60,33 @@ namespace EmployeeRemitance. Repository
 
         public Reponse DeleteQualification ( int Id )
         {
-            throw new NotImplementedException ( );
+            SqlParameter[] parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter ( );
+            parameters[0]. ParameterName = "@Flag";
+            parameters[0]. Value = "QD";
+            parameters[0]. SqlDbType = SqlDbType. Char;
+            parameters[0]. Size = 2;
+
+            parameters[1] = new SqlParameter ( );
+            parameters[1]. ParameterName = "@qualificationId";
+            parameters[1]. Value = Id;
+            parameters[1]. SqlDbType = SqlDbType. Int;
+
+
+            var reponse = _dbconnect.ExecuteSQLDataSingleWithParam<Reponse>("SP_QUALIFICATION",parameters);
+            return reponse;
         }
 
         public List<Qualification> GetAllQualification ( )
         {
-            throw new NotImplementedException ( );
+            SqlParameter[] parameters = new SqlParameter[1];
+            parameters[0] = new SqlParameter ( );
+            parameters[0]. ParameterName = "@Flag";
+            parameters[0]. Value = "QS";
+            parameters[0]. SqlDbType = SqlDbType. Char;
+            parameters[0]. Size = 2;
+            var  qualification = _dbconnect.ExecuteSQLDataListWithParam<Qualification>("SP_QUALIFICATION",parameters);
+            return qualification;
         }
 
         public List<Qualification> GetQualificationById ( int EmployeeId )
@@ -74,12 +109,45 @@ namespace EmployeeRemitance. Repository
 
         public Qualification GetQualificationByQualificationId ( int QualificationId )
         {
-            throw new NotImplementedException ( );
+            SqlParameter[] parameter =new SqlParameter[2];
+            parameter[0] = new SqlParameter ( );
+            parameter[0]. ParameterName = "@Flag";
+            parameter[0]. Value = "QE";
+            parameter[0]. SqlDbType = SqlDbType. Char;
+            parameter[0]. Size = 2;
+
+            parameter[1] = new SqlParameter ( );
+            parameter[1]. ParameterName = "@QualificationId";
+            parameter[1]. Value = QualificationId;
+            parameter[1]. SqlDbType = SqlDbType. Int;
+
+            var quali = _dbconnect. ExecuteSQLDataSingleWithParam<Qualification> ( "SP_QUALIFICATION" , parameter );
+            return quali;
         }
 
-        public Reponse UpdateQualification ( Qualification employee )
+        public Reponse UpdateQualification ( Qualification qualification )
         {
-            throw new NotImplementedException ( );
+            SqlParameter[] parameters = new SqlParameter[3];
+            parameters[0] = new SqlParameter ( );
+            parameters[0]. ParameterName = "@Flag";
+            parameters[0]. Value = "QU";
+            parameters[0]. SqlDbType = SqlDbType. Char;
+            parameters[0]. Size = 2;
+
+            parameters[1] = new SqlParameter ( );
+            parameters[1]. ParameterName = "@QualificationId";
+            parameters[1]. Value = qualification. QualificationId;
+            parameters[1]. SqlDbType = SqlDbType. Int;
+
+
+            parameters[2] = new SqlParameter ( );
+            parameters[2]. ParameterName = "@QualificationName";
+            parameters[2]. Value = qualification. QualificationName;
+            parameters[2]. SqlDbType = SqlDbType. VarChar;
+            parameters[2]. Size = 24;
+
+            var reponse = _dbconnect.ExecuteSQLDataSingleWithParam<Reponse>("SP_QUALIFICATION",parameters);
+            return reponse;
         }
     }
 }
