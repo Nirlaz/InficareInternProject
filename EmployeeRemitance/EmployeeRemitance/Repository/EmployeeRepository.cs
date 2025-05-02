@@ -166,7 +166,7 @@ namespace EmployeeRemitance. Repository
 
         public List<Employee> GetByFilter ( FilterModel filterModel )
         {
-            SqlParameter[] parameter = new SqlParameter[5];
+            SqlParameter[] parameter = new SqlParameter[7];
 
             parameter[0] = new SqlParameter ( );
             parameter[0]. ParameterName = "@Flag";
@@ -195,6 +195,19 @@ namespace EmployeeRemitance. Repository
             parameter[4]. ParameterName = "@AgeTo";
             parameter[4]. Value = ( object? ) filterModel. AgeTo;
             parameter[4]. SqlDbType = SqlDbType. Int;
+
+            parameter[5] = new SqlParameter ( );
+            parameter[5]. ParameterName = "@PhoneNumber";
+            parameter[5]. Value = ( object? ) filterModel. PhoneNumber;
+            parameter[5]. SqlDbType = SqlDbType. VarChar;
+            parameter[5]. Size = 20;
+
+
+            parameter[6] = new SqlParameter ( );
+            parameter[6]. ParameterName = "@ZipCode";
+            parameter[6]. Value = ( object? ) filterModel. ZipCode;
+            parameter[6]. SqlDbType = SqlDbType. VarChar;
+            parameter[6]. Size = 10;
 
             var Employee =  _connection. ExecuteSQLDataListWithParam<Employee> ( "SP_NEWEMPLOYEE" , parameter );
             return Employee;

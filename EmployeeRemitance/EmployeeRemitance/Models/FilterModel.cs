@@ -11,6 +11,11 @@ namespace EmployeeRemitance. Models
         public DateTime? AccountFrom { get; set; }
         public DateTime? AccountTo { get; set; }
 
+        public string? PhoneNumber { get; set; }
+
+        public string? ZipCode { get; set; }
+
+
         public bool DataAvailable { get; set; } = false;
      } 
 }

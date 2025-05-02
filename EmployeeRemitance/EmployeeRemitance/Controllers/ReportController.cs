@@ -51,8 +51,8 @@ namespace EmployeeRemitance. Controllers
                 worksheet. Cell ( i + 2 , 13 ). Value = emp. Department;
                 worksheet. Cell ( i + 2 , 14 ). Value = emp. Salary;
                 worksheet. Cell ( i + 2 , 15 ). Value = emp. Status;
-                worksheet. Cell ( i + 2 , 16 ). Value = emp. CreatedAt;
-                worksheet. Cell ( i + 2 , 17 ). Value = emp. UpdatedAt;
+                worksheet. Cell ( i + 2 , 16 ). Value = emp. CreatedAt.ToString("yyyy-MM-dd hh:mm:ss");
+                worksheet. Cell ( i + 2 , 17 ). Value = emp. UpdatedAt is null ? "" : emp. UpdatedAt?. ToString ( "yyyy-MM-dd hh:mm:ss" );
             }
 
             using var stream = new MemoryStream();
@@ -70,6 +70,8 @@ namespace EmployeeRemitance. Controllers
                 filter. AgeTo = null;
                 filter. AccountFrom = null;
                 filter. AccountTo = null;
+                filter. PhoneNumber = null;
+                filter. ZipCode = null;
                 return View ("Index" , filter );
 
         }
